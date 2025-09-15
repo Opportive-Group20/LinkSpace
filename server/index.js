@@ -154,7 +154,7 @@ io.on('connection', socket => {
 app.get('/', (req, res) => res.send("LinkSpace Server is running!"));
 
 // --- Auth routes
-app.post('/api/auth/register', require('./routes/register')(db, JWT_SECRET, customAlphabet, bcrypt, Timestamp));
+app.post('/auth/register', require('./routes/register')(db, JWT_SECRET, customAlphabet, bcrypt, Timestamp));
 app.post('/api/auth/login', require('./routes/login')(db, JWT_SECRET, bcrypt, Timestamp));
 app.get('/api/auth/me', protect, require('./routes/me')(db));
 
