@@ -2,7 +2,7 @@
 // FILE: client/src/services/api.js
 // ** UPDATED VERSION FOR RENDER BACKEND **
 // =======================================================================
-const API_URL = 'https://linkspace-lxa7.onrender.com'; // Your live Render backend URL
+const API_URL = 'https://linkspace-lxa7.onrender.com/api'; // Your live Render backend URL
 
 const apiRequest = async (endpoint, method = 'GET', body = null) => {
     const config = {
