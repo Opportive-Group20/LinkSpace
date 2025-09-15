@@ -2,7 +2,7 @@
 // FILE: client/src/services/api.js
 // ** FINAL CORRECTED VERSION **
 // =======================================================================
-const API_URL = 'https://linkspace-production.up.railway.app/api'; // Your live Railway URL
+const API_URL = 'https://link-space-it1cn8t6n-kunamsanthosh994-cpus-projects.vercel.app'; // Your live Railway URL
 
 const apiRequest = async (endpoint, method = 'GET', body = null) => {
     const config = {
