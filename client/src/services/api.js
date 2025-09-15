@@ -1,8 +1,8 @@
 // =======================================================================
 // FILE: client/src/services/api.js
-// ** FINAL CORRECTED VERSION **
+// ** UPDATED VERSION FOR RENDER BACKEND **
 // =======================================================================
-const API_URL = 'https://linkspace-lxa7.onrender.com'; // Your live Railway URL
+const API_URL = 'https://linkspace-lxa7.onrender.com'; // Your live Render backend URL
 
 const apiRequest = async (endpoint, method = 'GET', body = null) => {
     const config = {
@@ -31,4 +31,5 @@ const apiRequest = async (endpoint, method = 'GET', body = null) => {
         throw err;
     }
 };
+
 export default apiRequest;
