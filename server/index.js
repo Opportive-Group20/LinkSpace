@@ -35,18 +35,25 @@ const app = express();
 const server = http.createServer(app);
 
 const allowedOrigins = [
-    "http://localhost:3000",
-    "https://linkspacez.netlify.app"
+  "http://localhost:3000",
+  "https://linkspacez.netlify.app"   // your Netlify frontend
 ];
+
 const corsOptions = {
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.indexOf(origin) !== -1 || /\.netlify\.app$/.test(origin)) {
-            return callback(null, true);
-        }
-        return callback(new Error('CORS policy does not allow access from the specified Origin.'), false);
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
     }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
 };
+
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // ✅ handle preflight
+
 app.use(express.json());
 const JWT_SECRET = 'B4D7F9A2E1C8G3H6J9K2M5N8PQR4T7W9Z$C&F)J@NcRfUjXn2r5u8x/A%D*G-KaPdSgVkY';
 const protect = (req, res, next) => {
@@ -60,7 +67,13 @@ const protect = (req, res, next) => {
     }
 };
 
-const io = new Server(server, { cors: corsOptions });
+const io = new Server(server, {
+  cors: {
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
 const userSockets = {};
 const onlineUsers = new Set();
 
